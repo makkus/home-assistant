@@ -75,6 +75,7 @@ def setup(hass, config):
 
     def _shutdown_rfxtrx(event):
         RFXOBJECT.close_connection()
+        assert(not RFXOBJECT._thread.is_alive())
     hass.bus.listen_once(EVENT_HOMEASSISTANT_STOP, _shutdown_rfxtrx)
 
     return True
